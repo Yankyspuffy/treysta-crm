@@ -28,6 +28,18 @@ export default function LoginPage() {
           </span>
         </div>
 
+        {/* Mock Credentials Form */}
+        <div className="space-y-4 mb-6 text-left">
+          <div>
+            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Email Address</label>
+            <input type="email" defaultValue="demo@treysta.ae" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-4 py-3 text-sm text-[#111111] outline-none focus:border-[#4A6B5D] focus:ring-1 focus:ring-[#4A6B5D] transition-all" />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Password</label>
+            <input type="password" defaultValue="••••••••" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-4 py-3 text-sm text-[#111111] outline-none focus:border-[#4A6B5D] focus:ring-1 focus:ring-[#4A6B5D] transition-all" />
+          </div>
+        </div>
+
         {/* Action Buttons (Simulated RBAC) */}
         <div className="space-y-4 mb-8">
           <button 
