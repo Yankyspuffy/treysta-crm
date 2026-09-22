@@ -106,6 +106,10 @@ export default function Navbar() {
 
   const attentionCount = attentionItems.length;
 
+  if (pathname === '/login' || pathname === '/agent-workspace') {
+    return null;
+  }
+
   return (
     <>
       <nav className="bg-deep-charcoal text-white flex items-center justify-between px-8 py-5 relative z-30">
