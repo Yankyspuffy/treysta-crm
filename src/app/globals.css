@@ -13,18 +13,15 @@
   --color-coral: #C8524B;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-cormorant);
-
-  --color-warm-cream: var(--color-warm-cream);
-  --color-soft-cream: var(--color-soft-cream);
-  --color-deep-charcoal: var(--color-deep-charcoal);
-  --color-sage: var(--color-sage);
-  --color-amber: var(--color-amber);
-  --color-coral: var(--color-coral);
+@theme {
+  --color-background: #F9F6F0;
+  --color-foreground: #111111;
+  --color-warm-cream: #F9F6F0;
+  --color-soft-cream: #F2EFE9;
+  --color-deep-charcoal: #111111;
+  --color-sage: #4A6B5D;
+  --color-amber: #C88A35;
+  --color-coral: #C8524B;
 }
 
 body {
