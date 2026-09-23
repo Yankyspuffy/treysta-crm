@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface FlightEvent {
   id: string;
@@ -17,6 +18,10 @@ const INITIAL_FLIGHT_EVENTS: FlightEvent[] = [
 ];
 
 export default function CEOCommandCentre() {
+  const router = useRouter();
+  const [isAddAgentModalOpen, setIsAddAgentModalOpen] = useState(false);
+  const [isAgentCreated, setIsAgentCreated] = useState(false);
+  
   const [atRiskCount, setAtRiskCount] = useState(8);
   const [pipelineCount, setPipelineCount] = useState(312);
   const [hotLeads] = useState(45);
@@ -57,9 +62,17 @@ export default function CEOCommandCentre() {
           <h1 className="font-serif text-4xl text-deep-charcoal">Executive Overview</h1>
           <span className="text-xs text-gray-400 font-mono tracking-widest">{currentTime}</span>
         </div>
-        <span className="text-xs font-semibold text-deep-charcoal bg-amber/10 px-3 py-1.5 uppercase tracking-widest border border-amber/30 rounded-sm">
-          SIMULATED DEMO DATA
-        </span>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => setIsAddAgentModalOpen(true)}
+            className="bg-[#111111] hover:bg-black text-white px-4 py-2 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors shadow-sm"
+          >
+            + Add Agent
+          </button>
+          <span className="text-xs font-semibold text-deep-charcoal bg-amber/10 px-3 py-1.5 uppercase tracking-widest border border-amber/30 rounded-sm">
+            SIMULATED DEMO DATA
+          </span>
+        </div>
       </div>
 
       {/* KPI Grid */}
@@ -157,6 +170,78 @@ export default function CEOCommandCentre() {
           </div>
         </div>
       </div>
+
+      {/* Add Agent Modal */}
+      {isAddAgentModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white max-w-lg w-full rounded-sm shadow-2xl overflow-hidden animate-fade-in border border-gray-200">
+            {!isAgentCreated ? (
+              <div className="p-8">
+                <div className="mb-8">
+                  <h2 className="font-serif text-3xl text-deep-charcoal mb-2">Onboard Sales Agent</h2>
+                  <p className="text-sm text-gray-500 font-sans">Assign manager, territory, and initial lead exposure limits.</p>
+                </div>
+                
+                <div className="space-y-4 font-sans">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Full Name</label>
+                    <input type="text" defaultValue="David Kamau" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-sm text-deep-charcoal focus:outline-none focus:border-sage transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Email</label>
+                    <input type="email" defaultValue="david@demo.treysta.com" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-sm text-deep-charcoal focus:outline-none focus:border-sage transition-colors" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Role</label>
+                      <select disabled className="w-full bg-gray-100 border border-gray-200 rounded-sm px-3 py-2 text-sm text-gray-500 appearance-none cursor-not-allowed">
+                        <option>Sales Agent</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Manager</label>
+                      <input type="text" defaultValue="James M." className="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-sm text-deep-charcoal focus:outline-none focus:border-sage transition-colors" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Specialization</label>
+                    <input type="text" defaultValue="Off-Plan / 2 Bedroom" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-sm text-deep-charcoal focus:outline-none focus:border-sage transition-colors" />
+                  </div>
+                </div>
+
+                <div className="mt-8 flex items-center justify-end gap-4 font-sans">
+                  <button onClick={() => setIsAddAgentModalOpen(false)} className="text-xs font-bold text-gray-500 uppercase tracking-widest hover:text-deep-charcoal transition-colors">
+                    Cancel
+                  </button>
+                  <button onClick={() => setIsAgentCreated(true)} className="bg-[#111111] hover:bg-black text-white px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
+                    Create Account & Send Invite
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="p-8 text-center">
+                <div className="w-16 h-16 bg-[#4A6B5D]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-[#4A6B5D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 className="font-serif text-2xl text-deep-charcoal mb-4">Account created successfully for David Kamau</h2>
+                <p className="text-sm text-gray-500 font-sans mb-8 leading-relaxed max-w-sm mx-auto">
+                  Invitation sent to <span className="font-semibold text-deep-charcoal">david@demo.treysta.com</span>. Credentials active for demo login.
+                </p>
+                <div className="flex flex-col gap-3 font-sans">
+                  <button onClick={() => router.push('/login')} className="w-full bg-[#111111] hover:bg-black text-white px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
+                    Switch to David's Login
+                  </button>
+                  <button onClick={() => { setIsAddAgentModalOpen(false); setIsAgentCreated(false); }} className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors">
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
