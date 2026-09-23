@@ -2,32 +2,6 @@ import Link from 'next/link';
 
 export default function AgentWorkspacePage() {
   return (
-    <div className="min-h-screen bg-[#F9F6F0]">
-      {/* Agent Navigation */}
-      <nav className="bg-[#111111] text-white px-8 py-4 flex items-center justify-between shadow-md">
-        <div className="flex items-center gap-12">
-          <Link href="/" className="font-serif text-2xl tracking-widest uppercase">Treysta</Link>
-          <div className="flex items-center gap-6 text-sm font-semibold uppercase tracking-widest text-gray-400">
-            <Link href="/agent-workspace" className="text-white border-b-2 border-[#4A6B5D] pb-1">My Leads</Link>
-            <Link href="#" className="hover:text-white transition-colors pb-1">My Tasks</Link>
-            <Link href="/properties" className="hover:text-white transition-colors pb-1">Properties</Link>
-            <Link href="#" className="hover:text-white transition-colors pb-1">Viewings</Link>
-            <Link href="/pipeline" className="hover:text-white transition-colors pb-1">Pipeline</Link>
-            <Link href="#" className="hover:text-white transition-colors pb-1">My AI Assistant</Link>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="bg-[#C88A35]/20 text-[#C88A35] border border-[#C88A35]/30 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest hidden md:inline-block">
-            Simulated Demo Data
-          </span>
-          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-sm cursor-pointer hover:bg-white/10 transition-colors">
-             <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
-               S
-             </div>
-             <span className="text-xs font-bold uppercase tracking-widest text-white">Agent (Sarah)</span>
-          </div>
-        </div>
-      </nav>
 
       <div className="p-10 max-w-[1400px] mx-auto w-full">
         
@@ -163,6 +137,5 @@ export default function AgentWorkspacePage() {
            </div>
         </div>
       </div>
-    </div>
   );
 }
