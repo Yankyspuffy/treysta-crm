@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function AgentWorkspacePage() {
   return (
 
-      <div className="p-10 max-w-[1400px] mx-auto w-full">
+      <div className="p-4 sm:p-10 max-w-[1400px] mx-auto w-full">
         
         {/* Next Best Action Engine */}
         <div className="bg-white rounded-sm p-8 shadow-sm border border-gray-200 mb-8 relative overflow-hidden group hover:shadow-md transition-shadow cursor-default">
@@ -17,12 +17,12 @@ export default function AgentWorkspacePage() {
                <h3 className="font-serif text-3xl text-[#111111] font-bold leading-tight">Follow up with Mohammed before 4:30 PM.</h3>
                <p className="text-[#4A6B5D] font-semibold mt-2">Reason: Client requested the Business Bay payment plan yesterday and has not received a follow-up.</p>
              </div>
-             <div className="flex gap-4 shrink-0">
-               <button className="bg-[#111111] hover:bg-black text-white px-6 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-sm transition-colors cursor-pointer flex items-center gap-2">
+             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
+               <button className="w-full sm:w-auto justify-center bg-[#111111] hover:bg-black text-white px-6 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-sm transition-colors cursor-pointer flex items-center gap-2">
                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-1.472-.736-2.678-1.576-3.729-3.003-.213-.29-.022-.445.126-.593.133-.133.297-.346.445-.519.148-.173.198-.297.297-.494.099-.199.05-.371-.025-.52-.075-.148-.67-1.611-.916-2.203-.238-.58-.48-.501-.667-.511-.173-.01-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 3.064 1.213 3.262.148.198 2.223 3.393 5.385 4.674 2.083.844 2.977.902 4.025.759 1.168-.161 2.779-1.135 3.175-2.233.396-1.098.396-2.039.277-2.235-.119-.196-.416-.296-.713-.445zM12.012 21.996C6.549 21.996 2.01 17.458 2.01 11.996 2.01 6.534 6.549 1.996 12.012 1.996c5.462 0 10.001 4.538 10.001 10.001 0 5.462-4.539 10.001-10.001 10.001z"/></svg>
                  Open WhatsApp
                </button>
-               <button className="bg-[#111111] hover:bg-black text-white px-6 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-sm transition-colors cursor-pointer flex items-center gap-2">
+               <button className="w-full sm:w-auto justify-center bg-[#111111] hover:bg-black text-white px-6 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-sm transition-colors cursor-pointer flex items-center gap-2">
                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
                  Send Payment Plan
                </button>
@@ -31,7 +31,7 @@ export default function AgentWorkspacePage() {
         </div>
 
         {/* My Active Leads (Split View) */}
-        <div className="flex flex-col lg:flex-row gap-8 h-[650px]">
+        <div className="flex flex-col lg:flex-row gap-8 h-[auto] lg:h-[650px]">
            
            {/* Left Column: Lead Roster */}
            <div className="w-full lg:w-1/3 bg-white border border-gray-200 shadow-sm rounded-sm flex flex-col">
@@ -102,14 +102,14 @@ export default function AgentWorkspacePage() {
              <div className="flex-1 p-8 space-y-8 overflow-y-auto bg-gray-50">
                {/* Agent Query */}
                <div className="flex justify-end">
-                 <div className="bg-[#111111] text-white rounded-lg rounded-tr-none px-5 py-4 max-w-[75%] shadow-md">
+                 <div className="bg-[#111111] text-white rounded-lg rounded-tr-none px-5 py-4 max-w-[90%] md:max-w-[75%] shadow-md">
                    <p className="text-sm leading-relaxed">Summarize my hot leads</p>
                  </div>
                </div>
                
                {/* AI Response */}
                <div className="flex justify-start">
-                 <div className="bg-white border border-gray-200 rounded-lg rounded-tl-none px-6 py-5 max-w-[85%] shadow-sm relative">
+                 <div className="bg-white border border-gray-200 rounded-lg rounded-tl-none px-6 py-5 max-w-[95%] md:max-w-[85%] shadow-sm relative">
                    <div className="absolute -left-3 top-4 text-[10px] text-[#4A6B5D] font-bold uppercase tracking-widest -rotate-90">AI</div>
                    <p className="text-sm text-gray-800 leading-relaxed mb-4">
                      You have <strong className="text-[#111111]">2 hot leads</strong> today. Prioritize <strong className="text-[#111111]">Youssef</strong> (Viewing Scheduled) and <strong className="text-[#111111]">Elena</strong> (Requested Negotiation).

@@ -78,6 +78,7 @@ export default function Navbar() {
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
   const [dismissingId, setDismissingId] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
@@ -112,11 +113,22 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-deep-charcoal text-white flex items-center justify-between px-8 py-5 relative z-30">
-        <div className="flex items-center space-x-12">
-          <Link href="/" className="font-serif text-2xl tracking-widest uppercase">
+      <nav className="bg-deep-charcoal text-white flex items-center justify-between px-4 md:px-8 py-4 md:py-5 relative z-30">
+        <div className="flex items-center space-x-4 md:space-x-12">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-1.5 cursor-pointer"
+            aria-label="Open mobile menu"
+          >
+            <span className="w-6 h-0.5 bg-white block rounded-full"></span>
+            <span className="w-6 h-0.5 bg-white block rounded-full"></span>
+            <span className="w-6 h-0.5 bg-white block rounded-full"></span>
+          </button>
+          
+          <Link href="/" className="font-serif text-xl md:text-2xl tracking-widest uppercase">
             TREYSTA
           </Link>
+          
           <div className="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
@@ -133,14 +145,20 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <button
             onClick={() => setAttentionOpen(true)}
-            className="bg-coral text-white px-6 py-2.5 rounded-sm font-semibold text-sm uppercase tracking-wide transition-all shadow-md hover:brightness-110 cursor-pointer relative"
+            className="bg-coral text-white px-3 md:px-6 py-2 md:py-2.5 rounded-sm font-semibold text-xs md:text-sm uppercase tracking-wide transition-all shadow-md hover:brightness-110 cursor-pointer relative flex items-center justify-center"
+            title="What needs my attention?"
           >
-            WHAT NEEDS MY ATTENTION?
+            <span className="hidden md:inline">WHAT NEEDS MY ATTENTION?</span>
+            <span className="md:hidden">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </span>
             {attentionCount > 0 && (
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-white text-coral text-xs font-black rounded-full flex items-center justify-center shadow-lg">
+              <span className="absolute -top-2 -right-2 w-5 h-5 bg-white text-coral text-[10px] md:text-xs font-black rounded-full flex items-center justify-center shadow-lg">
                 {attentionCount}
               </span>
             )}
@@ -156,15 +174,51 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Backdrop */}
+      {/* Backdrop for sidebars */}
       <div
-        className={`fixed inset-0 bg-black/20 z-40 transition-opacity duration-300 ${attentionOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        onClick={() => setAttentionOpen(false)}
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${attentionOpen || mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => {
+          setAttentionOpen(false);
+          setMobileMenuOpen(false);
+        }}
       />
 
-      {/* Sidebar */}
+      {/* Mobile Menu Sidebar */}
       <aside
-        className={`fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${attentionOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 left-0 h-full w-[85vw] max-w-sm bg-deep-charcoal text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <div className="flex items-center justify-between px-6 pt-8 pb-6 border-b border-white/10">
+          <span className="font-serif text-2xl tracking-widest uppercase">TREYSTA</span>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="flex flex-col px-6 py-8 space-y-6 overflow-y-auto">
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-lg font-medium tracking-wide transition-colors ${isActive ? 'text-sage' : 'text-gray-400 hover:text-white'}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
+      </aside>
+
+      {/* Attention Sidebar */}
+      <aside
+        className={`fixed top-0 right-0 h-full w-[90vw] max-w-sm sm:w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${attentionOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex items-center justify-between px-8 pt-8 pb-6 border-b border-gray-100">
           <div>

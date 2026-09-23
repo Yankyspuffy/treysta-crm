@@ -55,14 +55,14 @@ export default function CEOCommandCentre() {
   }, []);
 
   return (
-    <div className="p-10 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-10 max-w-7xl mx-auto w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center gap-4">
-          <h1 className="font-serif text-4xl text-deep-charcoal">Executive Overview</h1>
-          <span className="text-xs text-gray-400 font-mono tracking-widest">{currentTime}</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-10 gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
+          <h1 className="font-serif text-3xl md:text-4xl text-deep-charcoal">Executive Overview</h1>
+          <span className="text-[10px] md:text-xs text-gray-400 font-mono tracking-widest">{currentTime}</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4">
           <button 
             onClick={() => setIsAddAgentModalOpen(true)}
             className="bg-[#111111] hover:bg-black text-white px-4 py-2 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors shadow-sm"
@@ -176,8 +176,8 @@ export default function CEOCommandCentre() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white max-w-lg w-full rounded-sm shadow-2xl overflow-hidden animate-fade-in border border-gray-200">
             {!isAgentCreated ? (
-              <div className="p-8">
-                <div className="mb-8">
+              <div className="p-5 sm:p-8">
+                <div className="mb-6 sm:mb-8">
                   <h2 className="font-serif text-3xl text-deep-charcoal mb-2">Onboard Sales Agent</h2>
                   <p className="text-sm text-gray-500 font-sans">Assign manager, territory, and initial lead exposure limits.</p>
                 </div>
@@ -191,7 +191,7 @@ export default function CEOCommandCentre() {
                     <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Email</label>
                     <input type="email" defaultValue="david@demo.treysta.com" className="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-sm text-deep-charcoal focus:outline-none focus:border-sage transition-colors" />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-1.5">Role</label>
                       <select disabled className="w-full bg-gray-100 border border-gray-200 rounded-sm px-3 py-2 text-sm text-gray-500 appearance-none cursor-not-allowed">
@@ -219,7 +219,7 @@ export default function CEOCommandCentre() {
                 </div>
               </div>
             ) : (
-              <div className="p-8 text-center">
+              <div className="p-6 sm:p-8 text-center">
                 <div className="w-16 h-16 bg-[#4A6B5D]/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-8 h-8 text-[#4A6B5D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
